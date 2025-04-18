@@ -3,9 +3,6 @@ package api
 import (
 	"database/sql"
 	"net/http"
-	"os/user"
-
-	"GOLANGECOMMERCE/service/user"
 
 	"github.com/gorilla/mux"
 )
@@ -26,7 +23,7 @@ func (s *APIServer) Run() error {
 	router := mux.NewRouter()
 	subrouter := router.PathPrefix("/api/v1").Subrouter()
 
-	userHandler := user.NewHandler()
+	userHandler := user.new
 	userHandler.RegisterRoutes(subrouter)
 	return http.ListenAndServe(s.addr, router)
 }
